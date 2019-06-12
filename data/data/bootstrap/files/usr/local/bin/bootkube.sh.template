@@ -16,6 +16,7 @@ if ! release=$( podman inspect {{.ReleaseImage}} -f '{{"{{"}} index .RepoDigests
 	release="{{.ReleaseImage}}"
 fi
 
+MCO_IMAGE=$(podman run --quiet --rm ${release} image mco)
 MACHINE_CONFIG_OPERATOR_IMAGE=$(podman run --quiet --rm ${release} image machine-config-operator)
 MACHINE_CONFIG_CONTROLLER_IMAGE=$(podman run --quiet --rm ${release} image machine-config-controller)
 MACHINE_CONFIG_SERVER_IMAGE=$(podman run --quiet --rm ${release} image machine-config-server)
